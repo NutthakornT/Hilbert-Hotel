@@ -6,7 +6,7 @@ import os
 
 
 # ==============================================
-# 1️⃣ CLASS DEFINITIONS
+# CLASS DEFINITIONS
 # ==============================================
 class Route:
     def __init__(self, route_no, amount):
@@ -97,7 +97,7 @@ class Hash:
 
 
 # ==============================================
-# 2️⃣ HILBERT FUNCTION
+#     HILBERT FUNCTION
 # ==============================================
 def hilbert_room_index(route_no, person_no):
     """สูตรคณิตศาสตร์ Hilbert Infinite Hotel"""
@@ -105,7 +105,7 @@ def hilbert_room_index(route_no, person_no):
 
 
 # ==============================================
-# 3️⃣ PRINT FUNCTION
+#     PRINT FUNCTION
 # ==============================================
 def print_file(hash_table):
     with open("hilbert_hotel.txt", "w", encoding="utf-8") as f:
@@ -114,7 +114,7 @@ def print_file(hash_table):
         f.write(f"{hash_table}\n")
         f.write("----------------------------------------\n")
         f.write(f"Total Guests: {hash_table.size}\n")
-    print("\n✅ ผลลัพธ์ถูกบันทึกลงไฟล์ชื่อ hilbert_hotel.txt แล้ว")
+    print("\n ผลลัพธ์ถูกบันทึกลงไฟล์ชื่อ hilbert_hotel.txt แล้ว")
 
 
 def show_memory_usage():
@@ -161,7 +161,7 @@ def quick_sort(room_list):
 
 
 # ==============================================
-# 4️⃣ START PROGRAM
+#     START PROGRAM
 # ==============================================
 route_list = []
 manual_rooms = []
@@ -171,7 +171,7 @@ routes = input("ใส่หมายเลขช่องทางเริ่�
 amounts = list(map(int, input(f"ใส่จำนวนแขกในช่องทาง {routes}: ").split()))
 
 if len(routes) != len(amounts):
-    print("⚠️ จำนวนช่องทางและจำนวนแขกไม่ตรงกัน")
+    print(" จำนวนช่องทางและจำนวนแขกไม่ตรงกัน")
     exit()
 
 # ใช้ route_list เก็บจำนวนช่องทางทั้งหมดที่เคยสร้าง
@@ -189,12 +189,12 @@ for i, route in enumerate(routes):
         Hotel.insert(Room(room_no, f"R{real_route_no}_P{j}"))
 end = time.perf_counter()
 
-print(f"\n✅ จัดแขกเข้าห้องสำเร็จด้วยสูตร Infinite Hotel Paradox")
+print(f"\n จัดแขกเข้าห้องสำเร็จด้วยสูตร Infinite Hotel Paradox")
 print(f"runtime : {(end-start):.10f}")
 
 
 # ==============================================
-# 5️⃣ MENU SYSTEM
+#  MENU SYSTEM
 # ==============================================
 while True:
     print("\nพิมพ์เลขต่อไปนี้เพื่อใช้ฟังก์ชันนั้น")
@@ -209,7 +209,7 @@ while True:
     choice = input("กรุณาใส่หมายเลขข้างต้น 0-7 : ")
 
     if not choice.isdigit() or not (0 <= int(choice) <= 7):
-        print("⚠️ กรุณาใส่เลข 0-7 เท่านั้น")
+        print(" กรุณาใส่เลข 0-7 เท่านั้น")
         continue
 
     choice = int(choice)
@@ -223,17 +223,17 @@ while True:
         amounts = list(map(int, input(f"ใส่จำนวนแขกในช่องทาง {routes}: ").split()))
 
         if len(routes) != len(amounts) or any(a <= 0 for a in amounts):
-            print("⚠️ ข้อมูลไม่ถูกต้อง")
+            print(" ข้อมูลไม่ถูกต้อง")
             continue
 
         start = time.perf_counter()
 
-        # 🧩 1. ดึงข้อมูลเก่ามาทั้งหมด
+        #  1. ดึงข้อมูลเก่ามาทั้งหมด
         old_guests = [x for x in Hotel.table if x is not None]
         for old in old_guests:
             if not " Old_man" in old.value:
                 old.value += " Old_man"
-        # 🧩 2. ต่อ route_list ใหม่
+        #  2. ต่อ route_list ใหม่
         start_route_index = len(route_list)
         for idx, route in enumerate(routes):
             route_no = start_route_index + idx
@@ -259,7 +259,7 @@ while True:
 
         end = time.perf_counter()
         print(
-            f"✅ เพิ่มช่องทางใหม่เรียบร้อย (ทุกคนย้ายห้องใหม่ทั้งหมด) runtime : {(end-start):.10f}"
+            f" เพิ่มช่องทางใหม่เรียบร้อย (ทุกคนย้ายห้องใหม่ทั้งหมด) runtime : {(end-start):.10f}"
         )
 
     elif choice == 2:
@@ -274,14 +274,14 @@ while True:
             continue
 
         if Hotel.search(key - 1):
-            print(f"⚠️ ห้อง {key} มีอยู่แล้ว")
+            print(f"ห้อง {key} มีอยู่แล้ว")
             continue
 
         new_room = Room(key - 1, f"force add room no : {force_add}")
         Hotel.insert(new_room)
         manual_rooms.append(new_room)
         force_add += 1
-        print(f"✅ เพิ่มห้อง {key} สำเร็จแล้ว")
+        print(f" เพิ่มห้อง {key} สำเร็จแล้ว")
 
     elif choice == 3:
         key = int(input("ใส่หมายเลขห้องที่ต้องการลบ: "))
@@ -293,21 +293,21 @@ while True:
     elif choice == 4:
         print("\n=== รายชื่อห้องทั้งหมด (เรียงลำดับแล้ว - Quick Sort) ===")
 
-        # 🔹 ดึงข้อมูลห้องทั้งหมดจาก Hash Table
+        #  ดึงข้อมูลห้องทั้งหมดจาก Hash Table
         rooms = [x for x in Hotel.table if x is not None]
 
         if not rooms:
-            print("⚠️ ยังไม่มีข้อมูลห้องในระบบ")
+            print(" ยังไม่มีข้อมูลห้องในระบบ")
             continue
 
-        # 🔹 เรียงลำดับด้วย Quick Sort
+        #  เรียงลำดับด้วย Quick Sort
         start = time.perf_counter()
         sorted_rooms = quick_sort(rooms)
         end = time.perf_counter()
 
         
 
-        # 🔹 สร้างไฟล์ผลลัพธ์
+        #  สร้างไฟล์ผลลัพธ์
         with open("sorted_rooms.txt", "w", encoding="utf-8") as f:
             f.write("=== รายชื่อห้องทั้งหมด (เรียงลำดับแล้ว - Quick Sort) ===\n")
             for r in sorted_rooms:
@@ -315,7 +315,7 @@ while True:
             f.write(f"\nรวมทั้งหมด {len(sorted_rooms)} ห้อง\n")
             f.write(f"runtime: {(end - start):.10f} วินาที\n")
 
-        print("\n✅ บันทึกผลเรียงลำดับลงไฟล์ sorted_rooms.txt เรียบร้อยแล้ว")
+        print("\n บันทึกผลเรียงลำดับลงไฟล์ sorted_rooms.txt เรียบร้อยแล้ว")
         print(f"runtime : {(end-start):.10f} วินาที")
 
     elif choice == 5:
@@ -324,9 +324,9 @@ while True:
         result = Hotel.search(key - 1)
         end = time.perf_counter()
         if result:
-            print(f"✅ พบห้องหมายเลข {key} -> {result}")
+            print(f" พบห้องหมายเลข {key} -> {result}")
         else:
-            print(f"❌ ไม่พบห้องหมายเลข {key}")
+            print(f" ไม่พบห้องหมายเลข {key}")
         print(f"runtime : {(end-start):.10f}")
 
     elif choice == 6:
@@ -346,9 +346,9 @@ while True:
                     return f"{num_bytes:,.2f} {unit}"
                 num_bytes /= 1024.0
 
-        print("\n📦 ขนาดข้อมูล Hotel:")
+        print("\n ขนาดข้อมูล Hotel:")
         print(f"  - raw bytes : {datasize_bytes:,} Bytes")
         print(f"  - readable  : {human_readable(datasize_bytes)}")
-        print("\n🧠 หน่วยความจำ:")
+        print("\n หน่วยความจำ:")
         print(f"  - RSS : {human_readable(mem_info.rss)}")
         print(f"  - VMS : {human_readable(mem_info.vms)}")
